@@ -1,0 +1,30 @@
+aws configure --profile localstack                                                                          # create localstack profile
+
+############## S3 ##### AWS CLI
+aws --endpoint-url http://localhost:4566 s3 mb s3://user-uploads                                            # create bucket
+aws --endpoint-url http://localhost:4566 s3 ls                                                              # list s3 bucket
+aws --endpoint-url http://localhost:4566 s3 ls s3://user-uploads --recursive --human-readable --summarize   # list files in bucket
+aws --endpoint-url http://localhost:4566 s3 ls s3://user-uploads
+aws --endpoint-url http://localhost:4566 s3 rm s3://user-uploads/iris_data.csv                              # remove file in bucket
+aws --endpoint-url http://localhost:4566 s3 rm s3://user-uploads --recursive                                # remove all files in bicket
+aws --endpoint-url http://localhost:4566 s3api delete-bucket --bucket user-uploads --region us-east-1       # remove bucket
+
+############## DynamoDB ##### AWS CLI
+aws --endpoint-url http://localhost:8000 dynamodb list-tables                                               # list tables
+aws --endpoint-url=http://localhost:8000 dynamodb delete-table --table-name test-table                      # delete table
+aws --endpoint-url http://localhost:8000 dynamodb scan --table-name Movies                                  # list all records
+aws --endpoint-url=http://localhost:8000 dynamodb create-table --cli-input-json file://C:\Users\bccardoso\Desktop\data\datasets\moviedata_template.json # create table
+
+############## Lambda Function ##### AWS CLI
+aws lambda list-functions                                                                                    # list all lambda
+aws lambda create-function --function-name lambda --runtime python3.9 --zip-file fileb://functions.zip --handler index.handler --role "arn:aws:iam::353006047186:role/test"   # create a lambda
+
+cd C:\Users\bccardoso\Desktop\data\service-lambda
+aws lambda invoke --function-name "lambda-example" --payload  file://.\events\index_event.json --cli-binary-format raw-in-base64-out .\responses\response.json # invoke lambda
+python-lambda-local -f functions/index.py -e events/index_event.json                                        # test lambda locally
+
+############## Lambda Function ##### SAM
+sam init                                                                                                    # create a lambda
+sam local invoke LambdaFunction -e events/event.json                                                        # test lambda locally
+sam deploy --guided                                                                                         # deploy a lambda for the first time
+sam deploy                                                                                                  # deploy a lambda (using samconfig.toml)

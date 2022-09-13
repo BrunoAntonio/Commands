@@ -1,0 +1,25 @@
+docker build -f src/main/docker/Dockerfile.jvm -t quarkus/docker-quarkus-jvm .
+docker run -i --rm -p 8080:8080 quarkus/docker-quarkus-jvm
+
+docker ps ## Show Running Containers
+docker ps -a ## Show All Containers
+docker stop <container_id> ## Stop Container
+docker rm <container_id> ## Remove Container
+docker kill <container_id> ## kill a container
+docker container prune ## Remove all stoped containers
+
+docker image ls ## List all Docker Images
+docker build -t <application_name> . ## Create a Docker Image
+docker run <docker_image_name> ## Run a Docker image
+docker save -o <complete_tar_file_path> <docker_image_name> ## Save Docker Image to .tar file
+docker rmi <docker_image_id> ## Remove a Docker image
+docker image prune ## Remove a image that is not tagged and is not referenced by any container
+docker image prune -a ## Remove all images which are not used by existing containers
+
+docker volume ls ## List volumes
+docker volume prune ## Remove all volumes not used by at least one container
+
+docker compose up ## Deploys web app services and creates fresh new containers
+docker-compose -f docker-compose.test.yml up
+docker-compose -f docker-compose.yaml up -d ## Starts all containers defined in a Docker Compose file.
+docker-compose -f docker-compose.yaml down ## Stops all containers defined in a Docker Compose file.

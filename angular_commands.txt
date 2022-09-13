@@ -1,0 +1,17 @@
+ng new test-app # create a application
+cd test-app
+ng serve # run the application
+ng g c <component name> # generate components
+ng g s <service name> # generate services
+ 
+"strictPropertyInitialization": false # allow @input, @output, @viewchild
+
+### TypeScript
+tsc <filename.ts> # compile a file to js
+tsc -p . # compile all files in current directory (needs a tsconfig.json empty file in that directory)
+tsc -w # watch for changes. When a ts file changes, compiles that file
+
+### Cypress
+npm test # run all tests
+npx cypress run --spec cypress/integration/browser-testing/sample1.spec.js # headless test
+npm run cy:open # interactive test

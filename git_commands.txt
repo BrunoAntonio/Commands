@@ -1,0 +1,37 @@
+##########################################################  GIT
+# iniciar repositorio local
+git clone https://bitbucket.critical.pt/scm/ctwframeagreement/alchemist-pulse.git
+
+# mudar para o diretorio do git
+cd C:\Users\bccardoso\Desktop\critical\apulse\alchemist-pulse
+
+# atualizar repositorio local
+git pull
+
+# criar o branch na maquina local e mudar para esse branch
+git checkout -b <branch_name> ## "bcc_CTWFRAMEAGREEMENT-35"
+
+# verificar o branch criado
+git branch -a
+
+# verificar arquivos adicionados (após alterar o codigo)
+git status
+
+# adicionar arquivos ao stage
+git add .
+
+# gravar nova versão
+git commit -m "CTWFRAMEAGREEMENT-35: backend + junit"
+
+# enviar repositorio local para o repositorio remoto
+git push
+
+###### Comandos adicionais
+# mudar de branch
+git checkout <branch_name>
+
+# apagar branch local
+git branch -d <branch-name>
+
+# apagar branch remoto
+git push origin :<branch-name>
