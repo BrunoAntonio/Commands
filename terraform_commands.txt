@@ -1,38 +1,16 @@
-cd terraform-docker
-terraform apply --auto-approve
-terraform plan
-terraform plan -var ext_port=1880
-terraform plan --var-file west.tfvars
-terraform destroy --auto-approve
-terraform state list
-terraform rm random_string.random[1]
-terraform output
-terraform workspace new dev
-terraform workspace new prod
-terraform workspace show
-terraform workspace list
-terraform workspace select dev
+terraform init      			# when you create a new configuration — or check out an existing configuration from version control — you need to initialize the directory
+terraform fmt       			# consistent formatting in all of your configuration files
+terraform plan                          # plan the configuration
+terraform validate  			# validate your configuration
+terraform apply     			# apply the configuration
+terraform apply --target=module.ec2     # apply the configuration to ec2 module
+terraform show      			# inspect the current state - track which resources it manages
+terraform state list 			# list of the resources in your project's state
+terraform output 			# terraform prints output values to the screen
+terraform state rm aws_s3_bucket.foo    # detach the physical resource in AWS from your Terraform state
 
-curl http://169.254.169.254/latest/meta-data/public-ipv4
-########################################################################
-
-resource "docker_container" "nodered_container" {
-  count = 1
-  name  = join("-", ["nodered",random_string.random[count.index].result])
-  image = docker_image.nodered_image.latest
-  ports {
-    internal = 1880
-    # external = 1880
-  }
-}
-
-
-output "container-name"{
-    value = docker_container.nodered_container[*].name
-    description = "Container name"
-}
-
-output "IP-Address"{
-    value = [for i in docker_container.nodered_container[*]: join(":", [i.ip_address],i.ports[*]["external"])]
-    description = "IP address and external port of the container"
-}
+terraform workspace list	        # terraform print out the list of your workspaces
+terraform workspace new dev 		# create a new workspace
+terraform apply -var-file='dev.tfvars'  # apply the configuration for your development environment
+terraform workspace select default      # switch to your default workspace
+terraform workspace delete dev          # delete your dev workspace
