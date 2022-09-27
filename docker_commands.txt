@@ -23,3 +23,8 @@ docker compose up ## Deploys web app services and creates fresh new containers
 docker-compose -f docker-compose.test.yml up
 docker-compose -f docker-compose.yaml up -d ## Starts all containers defined in a Docker Compose file.
 docker-compose -f docker-compose.yaml down ## Stops all containers defined in a Docker Compose file.
+
+docker build -t pythonimage . ## build and tag (-t) images using Dockerfile 
+docker run pythonimage python3 ./test.py # run image with commands (CMD [ "python3", "./test.py"])
+docker run -it -d pythonimage /bin/bash # run image with access to doker command line
+docker exec -it objective_galileo bash # access running container files
