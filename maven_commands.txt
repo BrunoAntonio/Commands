@@ -1,0 +1,36 @@
+################################################## MAVEN
+# mudar para o diretorio onde se pretende criar o projeto
+cd C:\Users\bccardoso\Desktop\maven
+
+# Criar um novo projeto
+mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+
+# mudar para o diretorio do projeto
+# cd my-app
+
+# compilar o projeto (tornar o source code em object code)
+mvn compile
+
+# build do projeto (sequencia composta por compilar e ligar, sendo ligar o processo de combinar object code com bibliotecas formando um executavel)
+mvn package
+
+# testar se o projeto está a funcionar
+java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App
+
+# compilar os testes sem correr
+mvn test-compile
+
+# correr os testes
+mvn test
+
+# criar o JAR
+mvn package
+
+# instalar o JAR no repositorio local
+mvn install
+
+# remover a instalação
+mvn clean
+
+
+

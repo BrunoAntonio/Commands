@@ -1,0 +1,13 @@
+admin
+developer
+tester
+
+cd C:\Program Files\Jenkins
+jenkins.exe stop
+jenkins.exe start
+jenkins.exe restart
+
+java -jar jenkins.war --httpPort=9090 # start jenkins
+java -jar jenkins-cli.jar -s http://localhost:9090/ -auth username:password build dev-project -s -v # build job and see the result
+java -jar jenkins-cli.jar -s http://localhost:9090/ -auth username:password build parameterize-job -s -v -p string-parameter=bruno -p choice-parameter=B # build job with parameters and see the result
+java -jar jenkins-cli.jar -s http://localhost:9000 -auth username:password safe-restart  # safe restart jenkins
